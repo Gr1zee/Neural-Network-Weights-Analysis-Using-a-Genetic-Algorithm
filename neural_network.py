@@ -5,9 +5,8 @@ import matplotlib.pyplot as plt
 
 
 class NeuralNetwork():
-    def __init__(self, INPUT_DIM, OUT_DIM, H_DIM):
+    def __init__(self, INPUT_DIM, OUT_DIM, H_DIM, structure):
         iris = datasets.load_iris()
-        a = generate_population(0, 12, 5, "", 3)
         self.INPUT_DIM = INPUT_DIM
         self.OUT_DIM = OUT_DIM
         self.H_DIM = H_DIM
@@ -15,16 +14,14 @@ class NeuralNetwork():
         self.dataset = [(iris.data[i][None, ...], iris.target[i]) for i in range(len(iris.target))]
 
         self.W1 = np.random.rand(self.INPUT_DIM, self.H_DIM)
-        self.c = self.structure_change(a[0])
+        self.c = self.structure_change(structure)
         self.b1 = np.random.rand(1, H_DIM)
         self.W2 = np.random.rand(H_DIM, OUT_DIM)
         self.b2 = np.random.rand(1, OUT_DIM)
-        print(self.c)
         self.W1 = self.multiplication(self.W1, self.c)
         self.b1 = self.multiplication(self.b1, self.c)
         self.W2 = self.multiplication(self.W2, self.c)
         self.b2 = self.multiplication(self.b2, self.c)
-        print(self.W1)
 
         self.ALPHA = 0.0002
         self.NUM_EPOCHS = 700
