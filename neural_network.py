@@ -33,7 +33,7 @@ class NeuralNetwork():
         return np.maximum(t, 0)
 
     def structure_change(self, n):
-        a = np.zeros((4, 3), int)
+        a = np.zeros((self.INPUT_DIM, self.H_DIM), int)
         c = 0
         for i in range(len(a)):
             for j in range(len(a[0])):
@@ -114,7 +114,7 @@ class NeuralNetwork():
 
 
 if __name__ == "__main__":
-    nn = NeuralNetwork(4, 3, 3)
+    nn = NeuralNetwork(4, 3, 3, "001110101111")
     accuracy = nn.calc_accuracy
     print("Accuracy:", nn.calc_accuracy())
     plt.plot(nn.loss_arr)
